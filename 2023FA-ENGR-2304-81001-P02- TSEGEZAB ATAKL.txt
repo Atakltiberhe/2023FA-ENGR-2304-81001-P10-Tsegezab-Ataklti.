@@ -1,0 +1,35 @@
+/*2023FA-ENGR--230481001-P00 TSEGEZAB ATAKLTI*/
+Number conversion from decimal to binary and binary to decimal
+#include <stdio.h>
+void decimalToBinary(int decimal_num, char binary[8]) {
+    for (int i = 7; i >= 0; i--) {
+        binary[i] = (decimal_num % 2) + '0';
+        decimal_num = decimal_num / 2;
+    }
+}
+
+int binaryToDecimal(const char binary[8]) {
+    int decimal = 0;
+    int multiplier = 1;
+
+    for (int i = 7; i >= 0; i--) {
+        decimal += (binary[i] - '0') * multiplier;
+        multiplier *= 2;
+    }
+
+    return decimal;
+}
+
+int main() {
+    int decimal_number = 100;
+    char binary_representation[8];
+
+    decimalToBinary(decimal_number, binary_representation);
+    printf("The binary representation of 100 is: %s\n", binary_representation);
+
+    char binary_input[] = "01100100";
+    int converted_decimal = binaryToDecimal(binary_input);
+    printf("The decimal representation of 01100100 is: %d\n", converted_decimal);
+
+    return 0;
+}
